@@ -1,0 +1,503 @@
+<!--
+═══════════════════════════════════════════════════════════════════════════════
+  QUOTE EDITOR - DLE INTEGRATION TEMPLATE
+  Shadow DOM Isolated Version
+
+  ИНСТРУКЦИЯ:
+  1. Скопируйте этот файл в ваш DLE шаблон (fullstory.tpl или другой)
+  2. Вставьте ваши стили в секцию STYLES
+  3. Вставьте ваш HTML в секцию HTML
+  4. Вставьте ваш JavaScript в секцию JAVASCRIPT
+  5. Готово! Редактор полностью изолирован от DLE
+═══════════════════════════════════════════════════════════════════════════════
+-->
+
+<!-- Подключаем внешние библиотеки ПЕРЕД Shadow DOM -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<!-- Контейнер для изолированного редактора -->
+<div id="quote-editor-isolated-container"></div>
+
+<script>
+(function() {
+    'use strict';
+
+    console.log('🚀 Initializing Quote Editor (Shadow DOM)...');
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 1. СОЗДАНИЕ SHADOW DOM
+    // ═══════════════════════════════════════════════════════════════════
+
+    const container = document.getElementById('quote-editor-isolated-container');
+
+    if (!container) {
+        console.error('❌ Container #quote-editor-isolated-container not found!');
+        return;
+    }
+
+    const shadowRoot = container.attachShadow({ mode: 'open' });
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 2. ВСТАВКА СТИЛЕЙ И HTML
+    // ═══════════════════════════════════════════════════════════════════
+
+    shadowRoot.innerHTML = `
+        <!-- ============================================================= -->
+        <!-- STYLES - Вставьте сюда ВСЕ ваши стили                        -->
+        <!-- ============================================================= -->
+        <style>
+            /*
+               ИНСТРУКЦИЯ:
+               Скопируйте ВЕСЬ блок <style> из вашего оригинального HTML
+               и вставьте сюда (без тегов <style></style>)
+            */
+
+            .main-ctr {
+                margin: 0 auto;
+                background: white;
+                padding: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .hdr {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 5px 20px;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            /*
+               ... ВСЕ ОСТАЛЬНЫЕ СТИЛИ ...
+               (примерно 8500 строк)
+            */
+
+        </style>
+
+        <!-- ============================================================= -->
+        <!-- HTML - Вставьте сюда весь HTML редактора                     -->
+        <!-- ============================================================= -->
+
+        <!--
+           ИНСТРУКЦИЯ:
+           Скопируйте весь HTML-код редактора начиная с <div class="main-ctr">
+           и вставьте сюда
+        -->
+
+        <div class="main-ctr">
+            <div class="hdr">
+                <h1>🎨 Универсальный редактор цитат</h1>
+                <p>Создавайте красивые цитаты с изображением и полным контролем над оформлением</p>
+            </div>
+
+            <!-- Canvas для генерации изображений -->
+            <canvas id="qcanvas" width="800" height="600"></canvas>
+
+            <!-- Элементы управления -->
+            <div class="quote-gen">
+                <textarea id="txtQuote" placeholder="Введите текст вашей цитаты..."></textarea>
+                <input type="text" id="writer" placeholder="Автор цитаты" value="">
+
+                <!-- ... весь остальной HTML ... -->
+            </div>
+
+            <!-- Кнопки действий -->
+            <div class="action-btns">
+                <button class="btn" id="downloadBtn">💿 Скачать</button>
+                <!-- ... остальные кнопки ... -->
+            </div>
+        </div>
+    `;
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 3. АДАПТИРОВАННЫЙ JAVASCRIPT
+    // ═══════════════════════════════════════════════════════════════════
+
+    // Создаем объект QE (Quote Editor)
+    const QE = {};
+
+    // ┌─────────────────────────────────────────────────────────────────┐
+    // │ ВАЖНО: Адаптированные селекторы для Shadow DOM                  │
+    // └─────────────────────────────────────────────────────────────────┘
+
+    QE.get = function(id) {
+        return shadowRoot.getElementById(id);
+    };
+
+    QE.qs = function(selector) {
+        return shadowRoot.querySelector(selector);
+    };
+
+    QE.qsAll = function(selector) {
+        return shadowRoot.querySelectorAll(selector);
+    };
+
+    // ┌─────────────────────────────────────────────────────────────────┐
+    // │ СОСТОЯНИЕ ПРИЛОЖЕНИЯ                                             │
+    // └─────────────────────────────────────────────────────────────────┘
+
+    QE.state = {
+        bgImg: null,
+        origBgImg: null,
+        isDragging: false,
+        isResizing: false,
+        draggedEl: null,
+        dragOffset: { x: 0, y: 0 },
+        resizeDir: null,
+        startCoords: { x: 0, y: 0 },
+        activeBgTab: 'color',
+        selectedGradient: null,
+        genImgTimeout: null,
+        animFrameId: null,
+        intMode: false,
+        isAutoScale: true,
+        isLayoutFixed: false,
+        txtBox: {
+            x: 200,
+            y: 200,
+            width: 400,
+            height: 200
+        },
+        cropMode: false,
+        isSelectingCrop: false,
+        cropSel: {
+            startX: 0,
+            startY: 0,
+            endX: 0,
+            endY: 0,
+            active: false
+        },
+        cropBox: {
+            x: 0,
+            y: 0,
+            width: 800,
+            height: 600
+        },
+        imgTransform: {
+            zoom: 1,
+            rotation: 0,
+            flipH: false,
+            flipV: false,
+            offsetX: 0,
+            offsetY: 0
+        },
+        isDraggingCrop: false,
+        isResizingCrop: false,
+        cropResizeHandle: null,
+        currentAspectRatio: 'free',
+        aspectRatioLocked: false,
+        compMode: false,
+        compSet: {
+            type: 'percent',
+            percent: 100,
+            maxWidth: 800,
+            maxHeight: 600,
+            originalWidth: 0,
+            originalHeight: 0
+        },
+        txtPos: {
+            quote: { x: null, y: null },
+            writer: { x: null, y: null },
+            source: { x: null, y: null },
+            date: { x: null, y: null }
+        },
+        txtAreas: {
+            quote: { x: 0, y: 0, width: 0, height: 0 },
+            writer: { x: 0, y: 0, width: 0, height: 0 },
+            source: { x: 0, y: 0, width: 0, height: 0 },
+            date: { x: 0, y: 0, width: 0, height: 0 }
+        },
+        txtFmt: {
+            bold: false,
+            italic: false,
+            fontFamily: 'Georgia',
+            fontSize: 40,
+            rotation: 0
+        },
+        editingTouchStartHandler: null,
+        editingTouchMoveHandler: null,
+        mobileDragTarget: null,
+        filtersEnabled: false,
+        stickers: [],
+        selectedStickerId: null,
+        isResizingSticker: false,
+        stickerGallery: {
+            currentPage: 1,
+            totalPages: 1,
+            currentCategory: 'all',
+            currentSearch: ''
+        },
+        disableMobileDragBlock: false
+    };
+
+    // ┌─────────────────────────────────────────────────────────────────┐
+    // │ ФИЛЬТРЫ ИЗОБРАЖЕНИЯ                                              │
+    // └─────────────────────────────────────────────────────────────────┘
+
+    QE.filters = {
+        brightness: 100,
+        contrast: 100,
+        blur: 0,
+        saturation: 100,
+
+        apply: function(ctx, canvas) {
+            ctx.filter = `brightness(${this.brightness}%) contrast(${this.contrast}%) blur(${this.blur}px) saturate(${this.saturation}%)`;
+        }
+    };
+
+    // ┌─────────────────────────────────────────────────────────────────┐
+    // │ ВСЕ МЕТОДЫ QE                                                    │
+    // │                                                                  │
+    // │ ИНСТРУКЦИЯ:                                                      │
+    // │ Скопируйте сюда ВСЕ методы из вашего оригинального кода         │
+    // │ Они будут работать благодаря адаптированным селекторам          │
+    // └─────────────────────────────────────────────────────────────────┘
+
+    QE.genImg = function(forExport = false) {
+        // Ваш код генерации изображения
+        const canvas = QE.get('qcanvas');
+        if (!canvas) return;
+
+        // ... весь остальной код ...
+    };
+
+    QE.showErr = function(msg) {
+        const errDiv = QE.get('errMsg');
+        if (errDiv) {
+            errDiv.textContent = msg;
+            errDiv.classList.add('show');
+            setTimeout(() => {
+                errDiv.classList.remove('show');
+            }, 5000);
+        }
+    };
+
+    QE.showSuccess = function(msg) {
+        const successDiv = QE.get('successMsg');
+        if (successDiv) {
+            successDiv.textContent = msg;
+            successDiv.classList.add('show');
+            setTimeout(() => {
+                successDiv.classList.remove('show');
+            }, 3000);
+        }
+    };
+
+    // ... ВСЕ ОСТАЛЬНЫЕ МЕТОДЫ QE ...
+    // (примерно 5000-6000 строк кода)
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 4. ИНИЦИАЛИЗАЦИЯ
+    // ═══════════════════════════════════════════════════════════════════
+
+    // ❌ БЫЛО (в оригинале):
+    // document.addEventListener('DOMContentLoaded', function() { ... });
+
+    // ✅ СТАЛО (для Shadow DOM):
+    (function initQuoteEditor() {
+        console.log('🎨 Initializing Quote Editor core...');
+
+        const canvasElement = QE.get('qcanvas');
+
+        if (!canvasElement) {
+            console.error('❌ Canvas not found in Shadow DOM');
+            return;
+        }
+
+        const isMobile = window.innerWidth <= 768;
+
+        // Градиенты
+        const gradientData = [
+            { id: 'gradient1', name: 'Фиолетовый', colors: ['#667eea', '#764ba2'] },
+            { id: 'gradient2', name: 'Розовый', colors: ['#f093fb', '#f5576c'] },
+            // ... все градиенты ...
+        ];
+
+        window.gradientData = gradientData;
+
+        // Инициализация градиентов
+        const gradientContainer = QE.get('gradientPresets');
+        if (gradientContainer) {
+            gradientData.forEach(gradient => {
+                const div = document.createElement('div');
+                div.style.cssText = `
+                    background: linear-gradient(135deg, ${gradient.colors[0]}, ${gradient.colors[1]});
+                    height: 60px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    position: relative;
+                    border: 2px solid transparent;
+                `;
+                div.dataset.gradient = gradient.id;
+                div.title = gradient.name;
+
+                div.addEventListener('click', function() {
+                    gradientContainer.querySelectorAll('div').forEach(g => {
+                        g.style.border = '2px solid transparent';
+                        g.style.transform = 'scale(1)';
+                    });
+
+                    this.style.border = '2px solid #4CAF50';
+                    this.style.transform = 'scale(0.95)';
+
+                    QE.state.selectedGradient = this.dataset.gradient;
+                    // QE.activateTab('gradient');
+                    QE.genImg();
+                });
+
+                gradientContainer.appendChild(div);
+            });
+        }
+
+        // Обработчики событий canvas
+        canvasElement.addEventListener('mousedown', QE.handleStart);
+        canvasElement.addEventListener('mousemove', QE.handleMove);
+        canvasElement.addEventListener('mouseup', QE.handleEnd);
+        canvasElement.addEventListener('mouseleave', QE.handleEnd);
+
+        // Touch события
+        canvasElement.addEventListener('touchstart', QE.handleStart, { passive: false });
+        canvasElement.addEventListener('touchmove', QE.handleMove, { passive: false });
+        canvasElement.addEventListener('touchend', QE.handleEnd);
+
+        // ВСЯ ОСТАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ из вашего DOMContentLoaded
+        // ...
+
+        // Первая отрисовка
+        QE.genImg();
+
+        console.log('✅ Quote Editor initialized successfully');
+    })();
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 5. ЭКСПОРТ ДЛЯ ВНЕШНЕГО ДОСТУПА
+    // ═══════════════════════════════════════════════════════════════════
+
+    window.QuoteEditorInstance = {
+        shadowRoot: shadowRoot,
+        QE: QE,
+
+        // Методы для внешнего доступа
+        getCanvas: function() {
+            return QE.get('qcanvas');
+        },
+
+        getQuoteText: function() {
+            const quoteEl = QE.get('txtQuote');
+            return quoteEl ? quoteEl.value : '';
+        },
+
+        getWriter: function() {
+            const writerEl = QE.get('writer');
+            return writerEl ? writerEl.value : '';
+        },
+
+        setQuoteText: function(text) {
+            const quoteEl = QE.get('txtQuote');
+            if (quoteEl) {
+                quoteEl.value = text;
+                QE.genImg();
+            }
+        },
+
+        setWriter: function(name) {
+            const writerEl = QE.get('writer');
+            if (writerEl) {
+                writerEl.value = name;
+                QE.genImg();
+            }
+        },
+
+        regenerate: function() {
+            QE.genImg();
+        },
+
+        downloadImage: function() {
+            if (QE.downloadImg) {
+                QE.downloadImg();
+            }
+        },
+
+        getImageDataURL: function(format = 'png', quality = 0.9) {
+            const canvas = QE.get('qcanvas');
+            if (!canvas) return null;
+
+            const mimeType = format === 'png' ? 'image/png' :
+                           format === 'jpg' ? 'image/jpeg' : 'image/webp';
+
+            return canvas.toDataURL(mimeType, quality);
+        }
+    };
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 6. ГЛОБАЛЬНЫЕ ФУНКЦИИ (для совместимости с DLE)
+    // ═══════════════════════════════════════════════════════════════════
+
+    // Если в вашем DLE шаблоне есть функции типа shareQuoteUniversal()
+    // которые должны работать снаружи Shadow DOM, определите их здесь:
+
+    window.generateQuoteImage = function() {
+        return window.QuoteEditorInstance.getCanvas();
+    };
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 7. ОБРАБОТКА ГЛОБАЛЬНЫХ СОБЫТИЙ
+    // ═══════════════════════════════════════════════════════════════════
+
+    // Некоторые события должны оставаться на document
+
+    // Вставка из буфера обмена
+    document.addEventListener('paste', function(e) {
+        const activeElement = document.activeElement;
+
+        // Если фокус в текстовом поле, разрешаем стандартную вставку
+        if (activeElement && (activeElement.tagName === 'INPUT' ||
+                              activeElement.tagName === 'TEXTAREA' ||
+                              activeElement.tagName === 'SELECT')) {
+            return;
+        }
+
+        // Проверяем наличие изображения в буфере
+        if (e.clipboardData && e.clipboardData.items) {
+            const items = e.clipboardData.items;
+
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    e.preventDefault();
+
+                    const blob = items[i].getAsFile();
+                    if (blob && QE.loadImgFile) {
+                        QE.loadImgFile(blob);
+                    }
+
+                    break;
+                }
+            }
+        }
+    });
+
+    console.log('✅ Quote Editor (Shadow DOM) fully initialized');
+
+})();
+</script>
+
+<!--
+═══════════════════════════════════════════════════════════════════════════════
+  КОНЕЦ ШАБЛОНА
+
+  ПРОВЕРОЧНЫЙ СПИСОК:
+  □ Вставили все стили
+  □ Вставили весь HTML
+  □ Вставили весь JavaScript
+  □ Подключили внешние библиотеки (JSZip, FileSaver)
+  □ Протестировали на локальном сервере
+  □ Убедились в изоляции стилей
+
+  ПОЛЕЗНЫЕ КОМАНДЫ ДЛЯ ОТЛАДКИ:
+  console.log(window.QuoteEditorInstance.shadowRoot);
+  console.log(window.QuoteEditorInstance.QE.state);
+  window.QuoteEditorInstance.getQuoteText();
+═══════════════════════════════════════════════════════════════════════════════
+-->

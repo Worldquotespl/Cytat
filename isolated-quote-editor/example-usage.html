@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Editor - Isolated Example</title>
+
+    <!-- Сторонние библиотеки ПЕРЕД Shadow DOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #isolated-quote-editor {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .external-controls {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 8px;
+        }
+
+        .external-controls button {
+            margin: 5px;
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .external-controls button:hover {
+            background: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>🎨 Quote Editor - Shadow DOM Isolated Demo</h1>
+        <p>Демонстрация изолированного редактора цитат</p>
+    </div>
+
+    <!-- Контейнер для изолированного приложения -->
+    <div id="isolated-quote-editor"></div>
+
+    <!-- Внешние элементы управления (не затрагиваются Shadow DOM) -->
+    <div class="external-controls">
+        <h3>🔧 Внешнее управление</h3>
+        <button onclick="getQuoteImage()">📷 Получить изображение</button>
+        <button onclick="getQuoteText()">📝 Получить текст цитаты</button>
+        <button onclick="resetEditor()">🔄 Сбросить редактор</button>
+        <button onclick="testIsolation()">🧪 Тест изоляции</button>
+
+        <div id="output" style="margin-top: 10px; padding: 10px; background: white; border-radius: 5px; min-height: 50px;"></div>
+    </div>
+
+    <!-- ВАРИАНТ 1: С отдельными файлами -->
+    <!--
+    <script src="js/shadow-adapter.js"></script>
+    <script src="js/quote-editor-wrapper.js"></script>
+    <script>
+        // Инициализация с загрузкой из файлов
+        const quoteEditor = new QuoteEditorIsolated('isolated-quote-editor', {
+            stylesPath: 'css/quote-editor.css',
+            templatePath: 'templates/quote-editor.html'
+        });
+    </script>
+    -->
+
+    <!-- ВАРИАНТ 2: Встроенный (для вашего случая) -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Получаем контейнер
+            const container = document.getElementById('isolated-quote-editor');
+            if (!container) {
+                console.error('❌ Container not found');
+                return;
+            }
+
+            // Создаем Shadow DOM
+            const shadowRoot = container.attachShadow({ mode: 'open' });
+
+            // Вставляем ВЕСЬ контент (стили + HTML)
+            shadowRoot.innerHTML = `
+                <style>
+                    /* ============= ВСТАВЬТЕ СЮДА ВСЕ СТИЛИ ============= */
+                    .main-ctr {
+                        margin: 0 auto;
+                        background: white;
+                        padding: 10px;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    }
+
+                    .hdr {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        padding: 5px 20px;
+                        text-align: center;
+                        margin-bottom: 10px;
+                    }
+
+                    /* ... остальные 8500+ строк стилей ... */
+
+                    /* ВАЖНО: Все ваши стили будут изолированы и не повлияют на внешнюю страницу */
+                </style>
+
+                <!-- ============= ВСТАВЬТЕ СЮДА ВЕСЬ HTML ============= -->
+                <div class="main-ctr">
+                    <div class="hdr">
+                        <h1>🎨 Универсальный редактор цитат</h1>
+                        <p>Создавайте красивые цитаты с изображением</p>
+                    </div>
+
+                    <!-- Canvas для генерации -->
+                    <canvas id="qcanvas" width="800" height="600"></canvas>
+
+                    <!-- ... весь остальной HTML ... -->
+                </div>
+            `;
+
+            // ============= АДАПТИРОВАННЫЙ JAVASCRIPT =============
+
+            // Создаем объект QE с адаптацией для Shadow DOM
+            const QE = {};
+
+            // Адаптированные селекторы
+            QE.get = (id) => shadowRoot.getElementById(id);
+            QE.qs = (selector) => shadowRoot.querySelector(selector);
+            QE.qsAll = (selector) => shadowRoot.querySelectorAll(selector);
+
+            // Состояние приложения (копируем из вашего кода)
+            QE.state = {
+                bgImg: null,
+                origBgImg: null,
+                // ... весь state
+            };
+
+            // ============= ВСЕ ОСТАЛЬНЫЕ МЕТОДЫ QE =============
+            // Просто копируйте все методы из вашего оригинального кода
+            // Они будут работать благодаря адаптированным QE.get(), QE.qs() и т.д.
+
+            QE.genImg = function() {
+                const canvas = QE.get('qcanvas');
+                if (!canvas) return;
+                // ... ваш код генерации
+            };
+
+            // ... все остальные методы ...
+
+            // ============= ИНИЦИАЛИЗАЦИЯ =============
+            // Вместо DOMContentLoaded используем прямой вызов
+            (function init() {
+                const canvas = QE.get('qcanvas');
+                if (!canvas) {
+                    console.error('❌ Canvas not found in Shadow DOM');
+                    return;
+                }
+
+                console.log('✅ Quote Editor initialized in Shadow DOM');
+
+                // Вся ваша инициализация из DOMContentLoaded
+                // ...
+
+            })();
+
+            // ============= ЭКСПОРТ ДЛЯ ВНЕШНЕГО ДОСТУПА =============
+            window.QuoteEditorInstance = {
+                shadowRoot: shadowRoot,
+                QE: QE,
+                getCanvas: () => QE.get('qcanvas'),
+                getQuoteText: () => QE.get('txtQuote')?.value || '',
+                regenerate: () => QE.genImg()
+            };
+
+        })();
+    </script>
+
+    <!-- Функции внешнего управления -->
+    <script>
+        function getQuoteImage() {
+            if (window.QuoteEditorInstance) {
+                const canvas = window.QuoteEditorInstance.getCanvas();
+                if (canvas) {
+                    const dataURL = canvas.toDataURL('image/png');
+                    const img = document.createElement('img');
+                    img.src = dataURL;
+                    img.style.maxWidth = '200px';
+                    img.style.border = '2px solid #4CAF50';
+
+                    const output = document.getElementById('output');
+                    output.innerHTML = '';
+                    output.appendChild(img);
+                }
+            }
+        }
+
+        function getQuoteText() {
+            if (window.QuoteEditorInstance) {
+                const text = window.QuoteEditorInstance.getQuoteText();
+                document.getElementById('output').innerHTML = `
+                    <strong>Текст цитаты:</strong><br>
+                    "${text}"
+                `;
+            }
+        }
+
+        function resetEditor() {
+            if (window.QuoteEditorInstance && window.QuoteEditorInstance.QE.repositionText) {
+                window.QuoteEditorInstance.QE.repositionText();
+                document.getElementById('output').innerHTML = '✅ Редактор сброшен';
+            }
+        }
+
+        function testIsolation() {
+            // Проверяем, что стили изолированы
+            const outsideBtn = document.querySelector('.external-controls button');
+            const insideCanvas = window.QuoteEditorInstance.shadowRoot.querySelector('#qcanvas');
+
+            const outsideStyles = window.getComputedStyle(outsideBtn);
+            const insideStyles = window.getComputedStyle(insideCanvas);
+
+            document.getElementById('output').innerHTML = `
+                <strong>🧪 Тест изоляции:</strong><br>
+                <strong>Внешняя кнопка:</strong> background = ${outsideStyles.backgroundColor}<br>
+                <strong>Внутренний canvas:</strong> background = ${insideStyles.backgroundColor}<br>
+                <strong>Изоляция:</strong> ${outsideStyles.backgroundColor !== insideStyles.backgroundColor ? '✅ Работает' : '❌ Не работает'}
+            `;
+        }
+    </script>
+</body>
+</html>
