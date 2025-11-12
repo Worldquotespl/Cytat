@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 Предложения по улучшению | QuotifyMe</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Поделитесь своими идеями по улучшению QuotifyMe. Предложите новые функции, улучшения интерфейса и инструменты для создания цитат.">
+    <meta name="keywords" content="QuotifyMe предложения, идеи улучшения, обратная связь, новые функции, развитие сервиса">
+    <meta name="author" content="QuotifyMe">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Предложения по улучшению QuotifyMe">
+    <meta property="og:description" content="Помогите нам стать лучше! Поделитесь своими идеями и предложениями.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quotifyme.com/suggestions.html">
+
+    <style>
+        /* QuotifyMe Suggestions Unique Styles - No conflicts with DLE */
+        .qmsug-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .qmsug-wrapper {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .qmsug-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .qmsug-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .qmsug-header h1 {
+            font-size: 2.8em;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .qmsug-header-meta {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .qmsug-intro {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .qmsug-intro p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .qmsug-intro ul {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0;
+        }
+
+        .qmsug-intro li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 1.05em;
+        }
+
+        .qmsug-intro li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .qmsug-intro a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .qmsug-intro a:hover {
+            color: #764ba2;
+        }
+
+        .qmsug-form-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .qmsug-form-section h2 {
+            font-size: 2em;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .qmsug-form-group {
+            margin-bottom: 25px;
+        }
+
+        .qmsug-form-label {
+            display: block;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .qmsug-form-input,
+        .qmsug-form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1em;
+            font-family: inherit;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: #fafafa;
+        }
+
+        .qmsug-form-input:focus,
+        .qmsug-form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        .qmsug-form-textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .qmsug-form-note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .qmsug-form-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .qmsug-form-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .qmsug-form-button:active {
+            transform: translateY(0);
+        }
+
+        .qmsug-security-code {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+            margin: 25px 0;
+        }
+
+        .qmsug-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .qmsug-benefit-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .qmsug-benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .qmsug-benefit-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .qmsug-benefit-card h3 {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .qmsug-benefit-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .qmsug-highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .qmsug-highlight-box h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .qmsug-highlight-box p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .qmsug-examples {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .qmsug-examples h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .qmsug-examples ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .qmsug-examples li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            color: #555;
+        }
+
+        .qmsug-examples li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+
+        .qmsug-quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .qmsug-quick-link-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: #333;
+            border: 2px solid transparent;
+        }
+
+        .qmsug-quick-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .qmsug-quick-link-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .qmsug-quick-link-card p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .qmsug-wrapper {
+                padding: 20px 15px;
+            }
+
+            .qmsug-header h1 {
+                font-size: 2em;
+            }
+
+            .qmsug-header-meta {
+                font-size: 1em;
+            }
+
+            .qmsug-form-section {
+                padding: 25px 20px;
+            }
+
+            .qmsug-form-section h2 {
+                font-size: 1.6em;
+            }
+
+            .qmsug-intro {
+                padding: 20px;
+            }
+
+            .qmsug-benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="qmsug-wrapper">
+        <div class="qmsug-container">
+            <!-- Header -->
+            <header class="qmsug-header">
+                <h1>💡 Предложения по улучшению QuotifyMe</h1>
+                <p class="qmsug-header-meta">Мы постоянно развиваем платформу и ценим мнение пользователей. Поделитесь своими идеями, чтобы сделать QuotifyMe ещё лучше!</p>
+            </header>
+
+            <!-- Intro Section -->
+            <section class="qmsug-intro">
+                <p><strong>Вы можете предложить:</strong></p>
+                <ul>
+                    <li>новые функции для генератора цитат или изображений;</li>
+                    <li>улучшения дизайна, интерфейса или мобильной версии;</li>
+                    <li>дополнительные языки, форматы и инструменты;</li>
+                    <li>свои пожелания по ИИ-генерации, фильтрам, эффектам и т.д.</li>
+                </ul>
+                <p>Каждый отклик внимательно рассматривается, а лучшие идеи попадают в наш <a href="/roadmap.html">план развития</a>.</p>
+            </section>
+
+            <!-- Benefits Section -->
+            <div class="qmsug-benefits">
+                <div class="qmsug-benefit-card">
+                    <div class="qmsug-benefit-icon">🎯</div>
+                    <h3>Будьте услышаны</h3>
+                    <p>Каждое предложение читается командой и принимается в работу</p>
+                </div>
+                <div class="qmsug-benefit-card">
+                    <div class="qmsug-benefit-icon">🚀</div>
+                    <h3>Влияйте на развитие</h3>
+                    <p>Лучшие идеи реализуются в ближайших обновлениях</p>
+                </div>
+                <div class="qmsug-benefit-card">
+                    <div class="qmsug-benefit-icon">🏆</div>
+                    <h3>Получайте бонусы</h3>
+                    <p>Авторы лучших идей получают Premium-доступ</p>
+                </div>
+            </div>
+
+            <!-- Examples Section -->
+            <div class="qmsug-examples">
+                <h3>💭 Примеры полезных предложений:</h3>
+                <ul>
+                    <li><strong>Функции:</strong> «Добавьте автоматическое сохранение проектов каждые 30 секунд»</li>
+                    <li><strong>Дизайн:</strong> «Сделайте темную тему для работы в ночное время»</li>
+                    <li><strong>ИИ:</strong> «Пусть ИИ предлагает несколько вариантов стилей оформления текста»</li>
+                    <li><strong>Форматы:</strong> «Добавьте экспорт в PDF для печати постеров»</li>
+                    <li><strong>Интеграции:</strong> «Прямая публикация в Instagram без скачивания»</li>
+                </ul>
+            </div>
+
+            <!-- Form Section -->
+            <section class="qmsug-form-section">
+                <h2>✍️ Оставить предложение</h2>
+
+                <form id="qmsugForm" method="post" action="">
+                    <div class="qmsug-form-group">
+                        <label for="qmsugName" class="qmsug-form-label">Имя (или ник):</label>
+                        <input
+                            type="text"
+                            id="qmsugName"
+                            name="name"
+                            class="qmsug-form-input"
+                            placeholder="Как к вам обращаться?"
+                            required
+                        >
+                    </div>
+
+                    <div class="qmsug-form-group">
+                        <label for="qmsugEmail" class="qmsug-form-label">E-mail (необязательно):</label>
+                        <input
+                            type="email"
+                            id="qmsugEmail"
+                            name="email"
+                            class="qmsug-form-input"
+                            placeholder="your@email.com"
+                        >
+                        <p class="qmsug-form-note">Оставьте email, если хотите получить ответ о статусе вашего предложения</p>
+                    </div>
+
+                    <div class="qmsug-form-group">
+                        <label for="qmsugMessage" class="qmsug-form-label">Ваше предложение:</label>
+                        <textarea
+                            id="qmsugMessage"
+                            name="message"
+                            class="qmsug-form-textarea"
+                            placeholder="Опишите вашу идею максимально подробно. Чем детальнее описание, тем проще нам будет её реализовать!"
+                            required
+                        ></textarea>
+                        <p class="qmsug-form-note">Минимум 20 символов. Постарайтесь описать, как это должно работать и зачем это нужно.</p>
+                    </div>
+
+                    <!-- Security Code Placeholder for DLE -->
+                    <div class="qmsug-security-code">
+                        <div class="qmsug-form-group">
+                            <label for="qmsugSecCode" class="qmsug-form-label">Код безопасности:</label>
+                            <input
+                                type="text"
+                                id="qmsugSecCode"
+                                name="sec_code"
+                                class="qmsug-form-input"
+                                placeholder="Введите код с картинки"
+                                style="max-width: 200px;"
+                            >
+                            <p class="qmsug-form-note">Для защиты от спама</p>
+                        </div>
+                    </div>
+
+                    <div class="qmsug-form-group">
+                        <button type="submit" class="qmsug-form-button">Отправить предложение</button>
+                    </div>
+
+                    <p class="qmsug-form-note" style="font-size: 14px; color: #666; margin-top: 10px;">
+                        💬 Ваши идеи помогают нам развиваться. Спасибо за участие!
+                    </p>
+                </form>
+            </section>
+
+            <!-- Highlight Box -->
+            <div class="qmsug-highlight-box">
+                <h3>🎁 Программа вознаграждений</h3>
+                <p>Авторы самых ценных предложений получают бесплатный Premium-доступ на 3 месяца и упоминание в разделе благодарностей!</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="qmsug-quick-links">
+                <a href="/faq.html" class="qmsug-quick-link-card">
+                    <h3>❓ FAQ</h3>
+                    <p>Ответы на частые вопросы</p>
+                </a>
+                <a href="/contacts.html" class="qmsug-quick-link-card">
+                    <h3>📧 Контакты</h3>
+                    <p>Связаться с нами напрямую</p>
+                </a>
+                <a href="/roadmap.html" class="qmsug-quick-link-card">
+                    <h3>🗺️ Roadmap</h3>
+                    <p>План развития платформы</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // QuotifyMe Suggestions JavaScript - Unique to avoid DLE conflicts
+        (function() {
+            'use strict';
+
+            const qmsugForm = document.getElementById('qmsugForm');
+            const qmsugMessage = document.getElementById('qmsugMessage');
+
+            // Form validation
+            if (qmsugForm) {
+                qmsugForm.addEventListener('submit', function(e) {
+                    const messageValue = qmsugMessage.value.trim();
+
+                    if (messageValue.length < 20) {
+                        e.preventDefault();
+                        alert('Пожалуйста, опишите ваше предложение подробнее (минимум 20 символов)');
+                        qmsugMessage.focus();
+                        return false;
+                    }
+                });
+            }
+
+            // Character counter
+            if (qmsugMessage) {
+                const qmsugCounter = document.createElement('div');
+                qmsugCounter.className = 'qmsug-form-note';
+                qmsugCounter.style.marginTop = '5px';
+                qmsugCounter.style.textAlign = 'right';
+                qmsugMessage.parentNode.appendChild(qmsugCounter);
+
+                function updateCounter() {
+                    const length = qmsugMessage.value.length;
+                    const remaining = Math.max(0, 20 - length);
+
+                    if (remaining > 0) {
+                        qmsugCounter.textContent = `Осталось символов: ${remaining}`;
+                        qmsugCounter.style.color = '#f57c00';
+                    } else {
+                        qmsugCounter.textContent = `Символов: ${length}`;
+                        qmsugCounter.style.color = '#1e7e34';
+                    }
+                }
+
+                qmsugMessage.addEventListener('input', updateCounter);
+                updateCounter();
+            }
+
+            // Smooth scroll for anchor links
+            const qmsugAnchors = document.querySelectorAll('.qmsug-wrapper a[href^="#"]');
+            qmsugAnchors.forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Animation on scroll
+            const qmsugObserverOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const qmsugObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, qmsugObserverOptions);
+
+            const qmsugAnimatedElements = document.querySelectorAll('.qmsug-benefit-card, .qmsug-examples, .qmsug-form-section');
+            qmsugAnimatedElements.forEach(function(element) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s, transform 0.5s';
+                qmsugObserver.observe(element);
+            });
+        })();
+    </script>
+</body>
+</html>
