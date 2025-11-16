@@ -1,0 +1,481 @@
+/**
+ * Language Switcher - Дополнительные темы и варианты
+ * Подключите этот файл для расширенных стилей
+ */
+
+/* ========================================
+   ТЕМА 1: Минималистичная (для хедера)
+   ======================================== */
+.lang-switcher-minimal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.lang-switcher-minimal .lang-select {
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+}
+
+.lang-switcher-minimal .lang-icon {
+    font-size: 16px;
+}
+
+/* ========================================
+   ТЕМА 2: Флаги (визуальная)
+   ======================================== */
+.lang-switcher-flags {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.lang-flag-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.lang-flag-btn:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+}
+
+.lang-flag-btn.active {
+    border-color: #2196F3;
+    background: #e3f2fd;
+}
+
+.lang-flag-btn .flag {
+    font-size: 32px;
+}
+
+.lang-flag-btn .name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+}
+
+.lang-flag-btn.active .name {
+    color: #2196F3;
+}
+
+/* ========================================
+   ТЕМА 3: Выпадающее меню (dropdown)
+   ======================================== */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.lang-dropdown-toggle:hover {
+    border-color: #2196F3;
+    background: #f5f5f5;
+}
+
+.lang-dropdown-toggle .arrow {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+}
+
+.lang-dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 180px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.lang-dropdown.open .lang-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #333;
+    text-decoration: none;
+}
+
+.lang-dropdown-item:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.lang-dropdown-item:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.lang-dropdown-item:hover {
+    background: #f5f5f5;
+}
+
+.lang-dropdown-item.active {
+    background: #e3f2fd;
+    color: #2196F3;
+    font-weight: 600;
+}
+
+.lang-dropdown-item .flag {
+    font-size: 20px;
+}
+
+.lang-dropdown-item .checkmark {
+    margin-left: auto;
+    color: #2196F3;
+    font-weight: bold;
+}
+
+/* ========================================
+   ТЕМА 4: Переключатель (toggle)
+   ======================================== */
+.lang-toggle {
+    display: inline-flex;
+    background: #e0e0e0;
+    border-radius: 20px;
+    padding: 4px;
+    position: relative;
+}
+
+.lang-toggle-option {
+    padding: 8px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    color: #666;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.lang-toggle-option.active {
+    color: white;
+}
+
+.lang-toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: #2196F3;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+    z-index: 0;
+}
+
+.lang-toggle[data-active="ru"] .lang-toggle-slider {
+    transform: translateX(100%);
+}
+
+/* ========================================
+   ТЕМА 5: Кнопки с границами
+   ======================================== */
+.lang-buttons {
+    display: inline-flex;
+    gap: 0;
+    border: 2px solid #2196F3;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.lang-button {
+    padding: 10px 20px;
+    background: white;
+    color: #2196F3;
+    border: none;
+    border-right: 2px solid #2196F3;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.lang-button:last-child {
+    border-right: none;
+}
+
+.lang-button:hover {
+    background: #e3f2fd;
+}
+
+.lang-button.active {
+    background: #2196F3;
+    color: white;
+}
+
+/* ========================================
+   ТЕМА 6: Боковая панель (sidebar)
+   ======================================== */
+.lang-sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.lang-sidebar-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.lang-sidebar-option:hover {
+    background: #f5f5f5;
+    transform: scale(1.1);
+}
+
+.lang-sidebar-option.active {
+    border-color: #2196F3;
+    background: #e3f2fd;
+}
+
+/* ========================================
+   АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ
+   ======================================== */
+@media (max-width: 768px) {
+    /* Минималистичная тема */
+    .lang-switcher-minimal {
+        width: 100%;
+        justify-content: center;
+        padding: 8px;
+    }
+
+    /* Флаги */
+    .lang-switcher-flags {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .lang-flag-btn {
+        flex: 1;
+    }
+
+    /* Dropdown */
+    .lang-dropdown-menu {
+        min-width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    /* Боковая панель - перемещаем вниз */
+    .lang-sidebar {
+        top: auto;
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+        flex-direction: row;
+    }
+
+    /* Кнопки */
+    .lang-buttons {
+        width: 100%;
+    }
+
+    .lang-button {
+        flex: 1;
+    }
+}
+
+/* ========================================
+   АНИМАЦИИ
+   ======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.lang-switch-animation {
+    animation: fadeInUp 0.3s ease;
+}
+
+.lang-loading-pulse {
+    animation: pulse 1s ease infinite;
+}
+
+/* ========================================
+   ТЕМНАЯ ТЕМА
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+    .lang-switcher-minimal,
+    .lang-switcher-flags,
+    .lang-dropdown-toggle,
+    .lang-dropdown-menu,
+    .lang-sidebar {
+        background: #2d2d2d;
+        color: #e0e0e0;
+    }
+
+    .lang-select,
+    .lang-dropdown-toggle,
+    .lang-button {
+        background: #2d2d2d;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+
+    .lang-dropdown-item:hover,
+    .lang-flag-btn:hover,
+    .lang-button:hover {
+        background: #3d3d3d;
+    }
+
+    .lang-dropdown-item.active,
+    .lang-flag-btn.active {
+        background: #1a3a52;
+    }
+
+    .lang-toggle {
+        background: #3d3d3d;
+    }
+}
+
+/* ========================================
+   RTL ПОДДЕРЖКА (для арабского и др.)
+   ======================================== */
+[dir="rtl"] .lang-dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .lang-dropdown-item .checkmark {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+[dir="rtl"] .lang-sidebar {
+    right: auto;
+    left: 20px;
+}
+
+/* ========================================
+   ACCESSIBILITY (доступность)
+   ======================================== */
+.lang-select:focus,
+.lang-dropdown-toggle:focus,
+.lang-button:focus,
+.lang-flag-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+/* Скрытый текст для screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ========================================
+   ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ
+   ======================================== */
+.lang-switcher-fixed-top {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.lang-switcher-fixed-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.lang-switcher-centered {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.lang-switcher-inline {
+    display: inline-flex;
+    vertical-align: middle;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-page-title="app_title">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Quote Editor</title>
+
+    <!-- ВАЖНО: Подключаем i18n ПЕРЕД основным скриптом -->
+    <script src="/js/i18n.js"></script>
+</head>
+<body>
+    <div class="main-ctr">
+        <!-- Переключатель языка (добавить в начало страницы) -->
+        {include file="includes/language_switcher.tpl"}
+
+        <!-- Заголовок с переводом -->
+        <div class="hdr">
+            <h1 data-i18n="app_title">Universal Quote Editor</h1>
+            <p data-i18n="app_subtitle">Create beautiful quotes with images and full design control</p>
+        </div>
+
+        <!-- Табы API с переводами -->
+        <div class="api-tabs">
+            <button id="tabMovies" class="api-tab active" data-i18n="tabs.movies">Movies</button>
+            <button id="tabMusic" class="api-tab" data-i18n="tabs.music">Music</button>
+            <button id="tabPexels" class="api-tab" data-i18n="tabs.photos">Photos</button>
+        </div>
+
+        <!-- Поля ввода с переводами -->
+        <div class="input-group">
+            <label for="txtQuote" data-i18n="fields.quote">Quote text</label>
+            <textarea id="txtQuote"
+                      data-i18n-placeholder="fields.quote"
+                      placeholder="Quote text"></textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="writer" data-i18n="fields.author">Author name</label>
+            <input type="text"
+                   id="writer"
+                   data-i18n-placeholder="fields.author"
+                   placeholder="Author name">
+        </div>
+
+        <!-- Селект с переводами -->
+        <select id="quoteCategory">
+            <option value="random" data-i18n="categories.random">Random</option>
+            <option value="мотивационную" data-i18n="categories.motivational">Motivational</option>
+            <option value="философскую" data-i18n="categories.philosophical">Philosophical</option>
+            <option value="о жизни" data-i18n="categories.life">About Life</option>
+        </select>
+
+        <!-- Кнопки с переводами -->
+        <button class="btn"
+                id="randomQuoteBtn"
+                data-i18n="buttons.generate_ai">Generate (AI)</button>
+
+        <button class="btn"
+                id="jsonQuoteBtn"
+                data-i18n="buttons.generate_random">Random</button>
+
+        <button class="btn"
+                id="downloadBtn"
+                data-i18n="buttons.download">Download</button>
+
+        <!-- Заголовки секций -->
+        <h3 class="section-title" data-i18n="background.title">Background Settings</h3>
+
+        <!-- Подсказки -->
+        <p class="hint" data-i18n="interactive.hint">
+            Drag text with mouse or finger. Pull green controls (→, ↓, ↘) to resize.
+        </p>
+
+        <!-- Чекбоксы -->
+        <label>
+            <input type="checkbox" id="inclWriter">
+            <span data-i18n="fields.include">Include</span>
+        </label>
+    </div>
+
+    <!-- Основной скрипт редактора -->
+    <script>
+        // Пример использования переводов в JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Current language:', i18n.getCurrentLanguage());
+
+            // Использование функции перевода в коде
+            const welcomeMessage = i18n.t('app_title');
+            console.log(welcomeMessage);
+
+            // Динамическое добавление переведенного текста
+            const errorDiv = document.createElement('div');
+            errorDiv.textContent = i18n.t('messages.error_no_quote');
+            // document.body.appendChild(errorDiv);
+
+            // Перевод с fallback
+            const customMessage = i18n.t('custom.missing.key', 'Default value');
+            console.log(customMessage);
+        });
+
+        // Обработка смены языка
+        document.addEventListener('languageChanged', function(e) {
+            console.log('Language changed to:', e.detail.language);
+
+            // Обновляем динамически созданные элементы
+            updateDynamicContent();
+        });
+
+        function updateDynamicContent() {
+            // Пример обновления динамического контента
+            const dynamicElements = document.querySelectorAll('.dynamic-translation');
+            dynamicElements.forEach(el => {
+                const key = el.getAttribute('data-translation-key');
+                if (key) {
+                    el.textContent = i18n.t(key);
+                }
+            });
+        }
+
+        // Пример показа уведомления с переводом
+        function showTranslatedMessage(key) {
+            const message = i18n.t(key);
+            alert(message);
+        }
+
+        // Пример использования в AJAX-запросах
+        async function sendTranslatedData() {
+            const lang = i18n.getCurrentLanguage();
+            const data = {
+                language: lang,
+                message: i18n.t('messages.success_saved')
+            };
+
+            // await fetch('/api/endpoint', {
+            //     method: 'POST',
+            //     body: JSON.stringify(data)
+            // });
+        }
+    </script>
+</body>
+</html>
