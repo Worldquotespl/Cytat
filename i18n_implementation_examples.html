@@ -1,0 +1,292 @@
+<!-- ====================================================================== -->
+<!-- ПРИМЕРЫ ВНЕДРЕНИЯ i18n В HTML КОД РЕДАКТОРА ЦИТАТ -->
+<!-- ====================================================================== -->
+
+<!-- ======================= ПРИМЕР 1: ЗАГОЛОВОК ======================= -->
+
+<!-- БЫЛО: -->
+<div class="hdr">
+    <h1>🎨 Универсальный редактор цитат</h1>
+    <p>Создавайте красивые цитаты с изображением и полным контролем над оформлением</p>
+</div>
+
+<!-- СТАЛО: -->
+<div class="hdr">
+    <h1 data-i18n="app_title">🎨 Универсальный редактор цитат</h1>
+    <p data-i18n="app_subtitle">Создавайте красивые цитаты с изображением и полным контролем над оформлением</p>
+</div>
+
+
+<!-- ======================= ПРИМЕР 2: ТАБЫ API ======================= -->
+
+<!-- БЫЛО: -->
+<div class="api-tabs">
+    <button id="tabMovies" class="api-tab active">🎬 Кино</button>
+    <button id="tabMusic" class="api-tab">🎵 Музыка</button>
+    <button id="tabPexels" class="api-tab">🖼️ Фото</button>
+</div>
+
+<!-- СТАЛО: -->
+<div class="api-tabs">
+    <button id="tabMovies" class="api-tab active" data-i18n="tabs.movies">🎬 Кино</button>
+    <button id="tabMusic" class="api-tab" data-i18n="tabs.music">🎵 Музыка</button>
+    <button id="tabPexels" class="api-tab" data-i18n="tabs.photos">🖼️ Фото</button>
+</div>
+
+
+<!-- ======================= ПРИМЕР 3: ПОИСК ФИЛЬМОВ ======================= -->
+
+<!-- БЫЛО: -->
+<div id="panelMovies" class="api-panel active">
+    <h3 class="section-title">Генератор по фильмам и сериалам</h3>
+    <div style="display: flex; gap: 10px;">
+        <input type="text" id="apiSearchQuery" placeholder="Введите название фильма...">
+        <button class="btn" id="apiSearchBtn">🔍 Найти</button>
+    </div>
+</div>
+
+<!-- СТАЛО: -->
+<div id="panelMovies" class="api-panel active">
+    <h3 class="section-title" data-i18n="movie_generator.title">Генератор по фильмам и сериалам</h3>
+    <div style="display: flex; gap: 10px;">
+        <input type="text"
+               id="apiSearchQuery"
+               data-i18n-placeholder="search.placeholder_movie"
+               placeholder="Введите название фильма...">
+        <button class="btn" id="apiSearchBtn" data-i18n="buttons.search">🔍 Найти</button>
+    </div>
+</div>
+
+
+<!-- ======================= ПРИМЕР 4: КАТЕГОРИИ ЦИТАТ ======================= -->
+
+<!-- БЫЛО: -->
+<select id="quoteCategory">
+    <option value="random">🎲 Случайная</option>
+    <option value="мотивационную">💪 Мотивационная</option>
+    <option value="философскую">🧠 Философская</option>
+    <option value="о жизни">🌟 О жизни</option>
+    <option value="о успехе">🏆 О успехе</option>
+    <option value="вдохновляющую">✨ Вдохновляющая</option>
+    <option value="о любви">❤️ О любви</option>
+</select>
+
+<!-- СТАЛО: -->
+<select id="quoteCategory">
+    <option value="random" data-i18n="categories.random">🎲 Случайная</option>
+    <option value="мотивационную" data-i18n="categories.motivational">💪 Мотивационная</option>
+    <option value="философскую" data-i18n="categories.philosophical">🧠 Философская</option>
+    <option value="о жизни" data-i18n="categories.life">🌟 О жизни</option>
+    <option value="о успехе" data-i18n="categories.success">🏆 О успехе</option>
+    <option value="вдохновляющую" data-i18n="categories.inspiring">✨ Вдохновляющая</option>
+    <option value="о любви" data-i18n="categories.love">❤️ О любви</option>
+</select>
+
+
+<!-- ======================= ПРИМЕР 5: КНОПКИ ГЕНЕРАЦИИ ======================= -->
+
+<!-- БЫЛО: -->
+<button class="btn" id="randomQuoteBtn">🤖 Сгенерировать(ИИ)</button>
+<button class="btn" id="jsonQuoteBtn">📚 Случайная</button>
+
+<!-- СТАЛО: -->
+<button class="btn" id="randomQuoteBtn" data-i18n="buttons.generate_ai">🤖 Сгенерировать(ИИ)</button>
+<button class="btn" id="jsonQuoteBtn" data-i18n="buttons.generate_random">📚 Случайная</button>
+
+
+<!-- ======================= ПРИМЕР 6: ПОЛЯ ВВОДА С ЧЕКБОКСАМИ ======================= -->
+
+<!-- БЫЛО: -->
+<div class="input-with-chk">
+    <input type="text" id="date" placeholder="Дата (например: 2025)">
+    <label class="chk-label">
+        <input type="checkbox" id="inclDate"> Включить
+    </label>
+</div>
+
+<!-- СТАЛО: -->
+<div class="input-with-chk">
+    <input type="text"
+           id="date"
+           data-i18n-placeholder="fields.date_placeholder"
+           placeholder="Дата (например: 2025)">
+    <label class="chk-label">
+        <input type="checkbox" id="inclDate">
+        <span data-i18n="fields.include">Включить</span>
+    </label>
+</div>
+
+
+<!-- ======================= ПРИМЕР 7: ПОПУЛЯРНЫЕ ТЕГИ PEXELS ======================= -->
+
+<!-- БЫЛО: -->
+<div id="pexelsPopularTags">
+    <button class="pexels-tag" data-query="nature">🌿 Природа</button>
+    <button class="pexels-tag" data-query="city">🏙️ Город</button>
+    <button class="pexels-tag" data-query="sunset">🌅 Закат</button>
+    <button class="pexels-tag" data-query="ocean">🌊 Океан</button>
+</div>
+
+<!-- СТАЛО: -->
+<div id="pexelsPopularTags">
+    <button class="pexels-tag" data-query="nature" data-i18n="tags.nature">🌿 Природа</button>
+    <button class="pexels-tag" data-query="city" data-i18n="tags.city">🏙️ Город</button>
+    <button class="pexels-tag" data-query="sunset" data-i18n="tags.sunset">🌅 Закат</button>
+    <button class="pexels-tag" data-query="ocean" data-i18n="tags.ocean">🌊 Океан</button>
+</div>
+
+
+<!-- ======================= ПРИМЕР 8: ПЛАТФОРМЫ ДЛЯ ЭКСПОРТА ======================= -->
+
+<!-- БЫЛО: -->
+<label class="platform-checkbox">
+    <input type="checkbox" id="platform_instagram_post" checked>
+    <span class="platform-name">Instagram Пост</span>
+    <span class="platform-size">1080×1080</span>
+</label>
+
+<!-- СТАЛО: -->
+<label class="platform-checkbox">
+    <input type="checkbox" id="platform_instagram_post" checked>
+    <span class="platform-name" data-i18n="platforms.instagram_post">Instagram Пост</span>
+    <span class="platform-size">1080×1080</span>
+</label>
+
+
+<!-- ======================= ПРИМЕР 9: ПОДСКАЗКИ И ХИНТЫ ======================= -->
+
+<!-- БЫЛО: -->
+<p style="color: #666; font-size: 14px;">
+    💡 Выберите источник и найдите изображение для фона цитаты.
+</p>
+
+<!-- СТАЛО: -->
+<p style="color: #666; font-size: 14px;" data-i18n="hints.select_source">
+    💡 Выберите источник и найдите изображение для фона цитаты.
+</p>
+
+<!-- БЫЛО: -->
+<p style="color: #666; font-size: 14px;">
+    💡 Подсказка: Перетаскивайте текст мышью или пальцем. Потяните за зеленые элементы управления для изменения размера.
+</p>
+
+<!-- СТАЛО: -->
+<p style="color: #666; font-size: 14px;" data-i18n="hints.drag_text">
+    💡 Подсказка: Перетаскивайте текст мышью или пальцем. Потяните за зеленые элементы управления для изменения размера.
+</p>
+
+
+<!-- ======================= ПРИМЕР 10: РАЗМЕР ХОЛСТА ======================= -->
+
+<!-- БЫЛО: -->
+<select id="canvasSz">
+    <option value="auto">📷 Размер загруженного изображения</option>
+    <option value="custom">🔧 Пользовательский размер</option>
+    <optgroup label="⬜ Квадраты">
+        <option value="1080x1080">📸 Instagram / FB Пост (1:1) - 1080x1080</option>
+    </optgroup>
+</select>
+
+<!-- СТАЛО: -->
+<select id="canvasSz">
+    <option value="auto" data-i18n="canvas.size_auto">📷 Размер загруженного изображения</option>
+    <option value="custom" data-i18n="canvas.size_custom">🔧 Пользовательский размер</option>
+    <optgroup label="⬜ Квадраты" data-i18n="canvas.group_square">
+        <option value="1080x1080" data-i18n="canvas.instagram_post">📸 Instagram / FB Пост (1:1) - 1080x1080</option>
+    </optgroup>
+</select>
+
+
+<!-- ======================= ПРИМЕР 11: КНОПКА СКАЧАТЬ ======================= -->
+
+<!-- БЫЛО: -->
+<div style="display: flex; align-items: center; gap: 10px;">
+    <span>Формат:</span>
+    <select id="imgFormat">
+        <option value="png">PNG</option>
+        <option value="jpg" selected>JPG</option>
+        <option value="webp">WEBP</option>
+    </select>
+    <button class="btn" id="downloadBtn">💿 Скачать</button>
+</div>
+
+<!-- СТАЛО: -->
+<div style="display: flex; align-items: center; gap: 10px;">
+    <span data-i18n="canvas.format_label">Формат:</span>
+    <select id="imgFormat">
+        <option value="png">PNG</option>
+        <option value="jpg" selected>JPG</option>
+        <option value="webp">WEBP</option>
+    </select>
+    <button class="btn" id="downloadBtn" data-i18n="buttons.download">💿 Скачать</button>
+</div>
+
+
+<!-- ======================= ПРИМЕР 12: РЕЖИМ ОБРЕЗКИ ======================= -->
+
+<!-- БЫЛО: -->
+<div class="mode-ctrl">
+    <label>
+        <input type="checkbox" id="cropMode"> ✂️ Режим обрезки изображения
+    </label>
+    <div class="int-ctrls" id="cropCtrls">
+        <button class="btn" id="previewCropBtn">👁️ Предпросмотр</button>
+        <button class="btn" id="applyCropBtn">✂️ Применить обрезку</button>
+        <button class="btn" id="resetCropBtn">↺ Сбросить</button>
+    </div>
+</div>
+
+<!-- СТАЛО: -->
+<div class="mode-ctrl">
+    <label>
+        <input type="checkbox" id="cropMode">
+        <span data-i18n="crop.mode_title">✂️ Режим обрезки изображения</span>
+    </label>
+    <div class="int-ctrls" id="cropCtrls">
+        <button class="btn" id="previewCropBtn" data-i18n="buttons.preview">👁️ Предпросмотр</button>
+        <button class="btn" id="applyCropBtn" data-i18n="buttons.apply_crop">✂️ Применить обрезку</button>
+        <button class="btn" id="resetCropBtn" data-i18n="buttons.reset">↺ Сбросить</button>
+    </div>
+</div>
+
+
+<!-- ======================= ПРИМЕР 13: ФИЛЬТРЫ ИЗОБРАЖЕНИЯ ======================= -->
+
+<!-- БЫЛО: -->
+<div class="slider-container">
+    <div class="slider-header">
+        <span class="slider-label">☀️ Яркость:</span>
+        <span class="slider-value" id="brightnessVal">100%</span>
+    </div>
+    <input type="range" id="brightness" min="0" max="200" value="100">
+</div>
+
+<!-- СТАЛО: -->
+<div class="slider-container">
+    <div class="slider-header">
+        <span class="slider-label" data-i18n="filters.brightness">☀️ Яркость:</span>
+        <span class="slider-value" id="brightnessVal">100%</span>
+    </div>
+    <input type="range" id="brightness" min="0" max="200" value="100">
+</div>
+
+
+<!-- ======================= ПОЛНЫЙ СПИСОК АТРИБУТОВ ======================= -->
+
+<!--
+ТИПЫ АТРИБУТОВ i18n:
+
+1. data-i18n="key"
+   Переводит textContent элемента
+
+2. data-i18n-placeholder="key"
+   Переводит атрибут placeholder
+
+3. data-i18n-title="key"
+   Переводит атрибут title (всплывающая подсказка)
+
+ВАЖНО:
+- Применяйте атрибуты к внутренним элементам (span, p), НЕ к контейнерам
+- Для select используйте data-i18n на каждом option
+- Вызывайте i18n.applyTranslations() после динамического создания элементов
+-->
