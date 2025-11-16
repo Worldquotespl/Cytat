@@ -1,0 +1,301 @@
+{
+  "app_title": "Универсальный редактор цитат",
+  "app_subtitle": "Создавайте красивые цитаты с изображением и полным контролем над оформлением",
+
+  "tabs": {
+    "movies": "Кино",
+    "music": "Музыка",
+    "photos": "Фото"
+  },
+
+  "search": {
+    "placeholder_movie": "Введите название фильма...",
+    "placeholder_music": "Введите имя исполнителя...",
+    "placeholder_photo": "Введите запрос (nature, city, people...)",
+    "button_search": "Найти",
+    "no_results": "Ничего не найдено",
+    "loading": "Загрузка...",
+    "error": "Не удалось выполнить поиск"
+  },
+
+  "popular_tags": "Популярные запросы:",
+  "tags": {
+    "nature": "Природа",
+    "city": "Город",
+    "sunset": "Закат",
+    "ocean": "Океан",
+    "mountains": "Горы",
+    "technology": "Технологии",
+    "business": "Бизнес",
+    "food": "Еда",
+    "fashion": "Мода",
+    "architecture": "Архитектура",
+    "animals": "Животные",
+    "travel": "Путешествия",
+    "flowers": "Цветы",
+    "coffee": "Кофе",
+    "minimal": "Минимализм",
+    "fitness": "Фитнес",
+    "love": "Любовь",
+    "workspace": "Рабочее место",
+    "night": "Ночь",
+    "abstract": "Абстракция"
+  },
+
+  "categories": {
+    "random": "Случайная",
+    "motivational": "Мотивационная",
+    "philosophical": "Философская",
+    "life": "О жизни",
+    "success": "О успехе",
+    "inspiring": "Вдохновляющая",
+    "love": "О любви",
+    "friendship": "О дружбе",
+    "family": "О семье",
+    "happiness": "О счастье"
+  },
+
+  "fields": {
+    "quote": "Текст цитаты",
+    "author": "Имя автора",
+    "source": "Источник (необязательно)",
+    "date": "Дата (например: 2025)",
+    "emoji": "Эмодзи",
+    "include": "Включить"
+  },
+
+  "modes": {
+    "bulk": "Пакетное создание цитат",
+    "compression": "Умное сжатие изображения",
+    "crop": "Режим обрезки изображения",
+    "interactive": "Интерактивный режим (перетаскивание и изменение размера текста)",
+    "multi_export": "Мультиплатформенный экспорт"
+  },
+
+  "buttons": {
+    "generate_ai": "Сгенерировать(ИИ)",
+    "generate_random": "Случайная",
+    "download": "Скачать",
+    "share_android": "Поделиться в Android",
+    "share_ios": "Поделиться в iOS",
+    "send_telegram": "Отправить в Telegram",
+    "publish": "Опубликовать",
+    "apply": "Применить",
+    "reset": "Сбросить",
+    "cancel": "Отмена",
+    "confirm": "Подтвердить",
+    "clear": "Очистить",
+    "load_more": "Показать ещё",
+    "select_all": "Выбрать все",
+    "deselect_all": "Снять все",
+    "create_package": "Создать пакет для соцсетей",
+    "download_zip": "Скачать ZIP-архив"
+  },
+
+  "background": {
+    "title": "Настройки фона",
+    "color": "Цвет",
+    "gradient": "Градиент",
+    "image": "Изображение",
+    "type_black": "Черный",
+    "type_white": "Белый",
+    "type_transparent": "Прозрачный",
+    "type_custom": "Выбрать свой цвет",
+    "upload_url": "Загрузить изображение по URL:",
+    "upload_file": "Загрузить изображение:",
+    "select_file": "Выбрать изображение",
+    "drag_drop": "или перетащите файл сюда",
+    "paste_hint": "Нажмите Ctrl+V чтобы вставить из буфера",
+    "library": "Или выберите из библиотеки:"
+  },
+
+  "text_effects": {
+    "title": "Эффекты текста",
+    "tab_basic": "Текст",
+    "tab_background": "Фон",
+    "tab_transform": "Поворот",
+    "tab_stickers": "Стикеры",
+    "bold": "Жирный",
+    "italic": "Курсив",
+    "font_family": "Шрифт",
+    "font_size": "Размер шрифта",
+    "text_color": "Цвет",
+    "stroke": "Обводка текста",
+    "stroke_width": "Толщина",
+    "text_bg": "Фон под текстом",
+    "text_bg_style_line": "Построчный",
+    "text_bg_style_block": "Единый блок",
+    "text_bg_style_adaptive": "Адаптивный",
+    "opacity": "Прозрачность",
+    "padding": "Отступ",
+    "radius": "Скругление",
+    "paragraph_gap": "Отступ между абз-ми",
+    "rotation": "Поворот текста"
+  },
+
+  "filters": {
+    "title": "Фильтры изображения",
+    "brightness": "Яркость",
+    "contrast": "Контраст",
+    "saturation": "Насыщенность",
+    "blur": "Размытие",
+    "overlay": "Затемнение",
+    "reset": "Сбросить фильтры"
+  },
+
+  "canvas": {
+    "size_title": "Размер холста",
+    "size_auto": "Размер загруженного изображения",
+    "size_custom": "Пользовательский размер",
+    "width": "Ширина (px):",
+    "height": "Высота (px):",
+    "apply_size": "Применить",
+    "format": "Формат:",
+    "watermark": "Подпись"
+  },
+
+  "compression": {
+    "by_percent": "По проценту:",
+    "by_width": "По ширине:",
+    "by_height": "По высоте:",
+    "original_size": "Исходный размер:",
+    "new_size": "Новый размер:",
+    "ratio": "Степень сжатия:",
+    "hint": "Умное сжатие сохраняет пропорции изображения. Выберите способ сжатия и нажмите Применить."
+  },
+
+  "crop": {
+    "zoom": "Масштаб:",
+    "rotation": "Поворот:",
+    "position_x": "X:",
+    "position_y": "Y:",
+    "aspect_ratio": "Соотношение сторон:",
+    "aspect_free": "Свободно",
+    "aspect_square": "Квадрат",
+    "aspect_standard": "Стандарт",
+    "aspect_wide": "Широкий",
+    "aspect_portrait": "Портрет",
+    "aspect_stories": "Stories",
+    "lock_aspect": "Зафиксировать соотношение",
+    "preview": "Предпросмотр",
+    "apply_crop": "Применить обрезку",
+    "hints": "Подсказки:",
+    "hint_drag": "Кликните и перетащите для выбора области обрезки",
+    "hint_wheel": "Колесико мыши для масштабирования (на ПК)",
+    "hint_shift": "Удерживайте Shift для сохранения пропорций",
+    "hint_double": "Двойной клик/тап для выбора всей области"
+  },
+
+  "stickers": {
+    "upload": "Загрузить свой стикер",
+    "gallery": "Галерея стикеров",
+    "category": "Категория:",
+    "search_placeholder": "по имени/тегу...",
+    "delete_all": "Удалить все",
+    "selected_settings": "Настройки выбранного стикера",
+    "delete_sticker": "Удалить стикер",
+    "hint": "Кликните на стикер на холсте, чтобы выбрать и настроить его."
+  },
+
+  "bulk": {
+    "title": "Настройки пакета",
+    "placeholder": "Введите цитаты, каждую на новой строке (макс. 35)",
+    "start": "Начать пакетную генерацию",
+    "clear_list": "Очистить список",
+    "hint": "Используйте это, чтобы сгенерировать серию цитат с одним и тем же фоном, изображением и автором, сохранив выбранный стиль оформления.",
+    "count": "цитат"
+  },
+
+  "multi_export": {
+    "title": "Настройки пакета",
+    "description": "Создайте изображения для всех популярных соцсетей одним кликом. Все файлы будут сохранены в ZIP-архив.",
+    "select_platforms": "Выберите платформы:",
+    "adaptation": "Адаптация под размеры:",
+    "mode_cover": "Обрезать (заполнить кадр)",
+    "mode_contain": "Добавить поля (показать всё)",
+    "mode_stretch": "Растянуть (исказить)",
+    "optimize": "Оптимизировать качество",
+    "add_watermark": "Добавить watermark",
+    "format": "Формат:",
+    "save_selection": "Запомнить выбор платформ",
+    "save_hint": "(При следующем посещении сайта этот выбор будет сохранен)",
+    "progress": "Прогресс:",
+    "status_preparing": "Подготовка...",
+    "preview_thumbnails": "Предпросмотр (миниатюры):"
+  },
+
+  "platforms": {
+    "instagram_post": "Instagram Пост",
+    "instagram_stories": "Instagram Stories",
+    "facebook_post": "Facebook Пост",
+    "twitter_post": "Twitter/X Пост",
+    "pinterest_pin": "Pinterest Пин",
+    "linkedin_post": "LinkedIn Пост",
+    "youtube_thumbnail": "YouTube Превью",
+    "telegram_post": "Telegram Пост",
+    "wp_featured": "WP Изобр. Записи"
+  },
+
+  "messages": {
+    "success_downloaded": "Изображение скачано!",
+    "success_generated": "Цитата сгенерирована!",
+    "success_applied": "Применено успешно!",
+    "success_saved": "Сохранено успешно!",
+    "error_no_quote": "Введите текст цитаты",
+    "error_no_author": "Заполните поле Автор",
+    "error_no_image": "Нет фонового изображения",
+    "error_select_platform": "Выберите хотя бы одну платформу",
+    "error_file_type": "Пожалуйста, выберите изображение",
+    "error_loading": "Ошибка загрузки",
+    "info_searching": "Идет поиск...",
+    "info_loading_details": "Загружаю детали...",
+    "info_generating": "Генерирую..."
+  },
+
+  "ai": {
+    "generate": "Сгенерировать(ИИ)",
+    "category_select": "Выберите категорию или введите свой запрос",
+    "smart_mode": "Умный режим",
+    "regenerate": "Перегенерировать",
+    "use_quote": "Использовать цитату",
+    "clear": "Очистить",
+    "result": "Цитата от ИИ:",
+    "advanced": "Расширенные настройки",
+    "prompt_placeholder": "Введите ваш запрос..."
+  },
+
+  "pexels": {
+    "title": "Поиск фото на Pexels",
+    "orientation": "Ориентация:",
+    "orientation_any": "Любая",
+    "orientation_landscape": "Горизонтальная",
+    "orientation_portrait": "Вертикальная",
+    "orientation_square": "Квадратная",
+    "results": "Результатов:",
+    "auto_credit": "Автоматически указывать автора фото (не обязательно, но приветствуется)"
+  },
+
+  "quick_format": "Быстрый выбор формата:",
+  "instagram_1_1": "Instagram Пост:",
+  "youtube_16_9": "YouTube:",
+  "linkedin_ratio": "LinkedIn:",
+  "custom_size_hint": "Выберите Пользовательский размер для создания изображения с уникальными пропорциями (от 100×100 до 4000×4000 px)",
+
+  "interactive": {
+    "text_width": "Ширина текста:",
+    "text_height": "Высота текста:",
+    "auto_size": "Авто-размер",
+    "manual_mode": "Ручной режим",
+    "fix_layout": "Зафиксировать макет",
+    "layout_fixed": "Макет зафиксирован",
+    "hint": "Перетаскивайте текст мышью или пальцем. Потяните за зеленые элементы управления (→, ↓, ↘) для изменения размера.",
+    "scroll_lock": "Блокировка прокрутки"
+  },
+
+  "reset_text": "Сброс текста",
+  "image_info": "Информация об изображении",
+
+  "footer": {
+    "created_by": "Создано QuotifyMe.com"
+  }
+}

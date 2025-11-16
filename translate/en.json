@@ -1,0 +1,301 @@
+{
+  "app_title": "Universal Quote Editor",
+  "app_subtitle": "Create beautiful quotes with images and full design control",
+
+  "tabs": {
+    "movies": "Movies",
+    "music": "Music",
+    "photos": "Photos"
+  },
+
+  "search": {
+    "placeholder_movie": "Enter movie or series name...",
+    "placeholder_music": "Enter artist name...",
+    "placeholder_photo": "Enter query (nature, city, people...)",
+    "button_search": "Search",
+    "no_results": "Nothing found",
+    "loading": "Loading...",
+    "error": "Failed to perform search"
+  },
+
+  "popular_tags": "Popular queries:",
+  "tags": {
+    "nature": "Nature",
+    "city": "City",
+    "sunset": "Sunset",
+    "ocean": "Ocean",
+    "mountains": "Mountains",
+    "technology": "Technology",
+    "business": "Business",
+    "food": "Food",
+    "fashion": "Fashion",
+    "architecture": "Architecture",
+    "animals": "Animals",
+    "travel": "Travel",
+    "flowers": "Flowers",
+    "coffee": "Coffee",
+    "minimal": "Minimal",
+    "fitness": "Fitness",
+    "love": "Love",
+    "workspace": "Workspace",
+    "night": "Night",
+    "abstract": "Abstract"
+  },
+
+  "categories": {
+    "random": "Random",
+    "motivational": "Motivational",
+    "philosophical": "Philosophical",
+    "life": "About Life",
+    "success": "About Success",
+    "inspiring": "Inspiring",
+    "love": "About Love",
+    "friendship": "About Friendship",
+    "family": "About Family",
+    "happiness": "About Happiness"
+  },
+
+  "fields": {
+    "quote": "Quote text",
+    "author": "Author name",
+    "source": "Source (optional)",
+    "date": "Date (e.g. 2025)",
+    "emoji": "Emoji",
+    "include": "Include"
+  },
+
+  "modes": {
+    "bulk": "Bulk Quote Creation",
+    "compression": "Smart Image Compression",
+    "crop": "Image Crop Mode",
+    "interactive": "Interactive Mode (drag and resize text)",
+    "multi_export": "Multi-Platform Export"
+  },
+
+  "buttons": {
+    "generate_ai": "Generate (AI)",
+    "generate_random": "Random",
+    "download": "Download",
+    "share_android": "Share on Android",
+    "share_ios": "Share on iOS",
+    "send_telegram": "Send to Telegram",
+    "publish": "Publish",
+    "apply": "Apply",
+    "reset": "Reset",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "clear": "Clear",
+    "load_more": "Load More",
+    "select_all": "Select All",
+    "deselect_all": "Deselect All",
+    "create_package": "Create Package",
+    "download_zip": "Download ZIP"
+  },
+
+  "background": {
+    "title": "Background Settings",
+    "color": "Color",
+    "gradient": "Gradient",
+    "image": "Image",
+    "type_black": "Black",
+    "type_white": "White",
+    "type_transparent": "Transparent",
+    "type_custom": "Custom Color",
+    "upload_url": "Load image from URL:",
+    "upload_file": "Upload image:",
+    "select_file": "Select Image",
+    "drag_drop": "or drag file here",
+    "paste_hint": "Press Ctrl+V to paste from clipboard",
+    "library": "Or choose from library:"
+  },
+
+  "text_effects": {
+    "title": "Text Effects",
+    "tab_basic": "Text",
+    "tab_background": "Background",
+    "tab_transform": "Rotation",
+    "tab_stickers": "Stickers",
+    "bold": "Bold",
+    "italic": "Italic",
+    "font_family": "Font",
+    "font_size": "Font Size",
+    "text_color": "Color",
+    "stroke": "Text Stroke",
+    "stroke_width": "Thickness",
+    "text_bg": "Text Background",
+    "text_bg_style_line": "Line by Line",
+    "text_bg_style_block": "Single Block",
+    "text_bg_style_adaptive": "Adaptive",
+    "opacity": "Opacity",
+    "padding": "Padding",
+    "radius": "Rounding",
+    "paragraph_gap": "Paragraph Gap",
+    "rotation": "Text Rotation"
+  },
+
+  "filters": {
+    "title": "Image Filters",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "saturation": "Saturation",
+    "blur": "Blur",
+    "overlay": "Darkening",
+    "reset": "Reset Filters"
+  },
+
+  "canvas": {
+    "size_title": "Canvas Size",
+    "size_auto": "Uploaded Image Size",
+    "size_custom": "Custom Size",
+    "width": "Width (px):",
+    "height": "Height (px):",
+    "apply_size": "Apply",
+    "format": "Format:",
+    "watermark": "Watermark"
+  },
+
+  "compression": {
+    "by_percent": "By Percentage:",
+    "by_width": "By Width:",
+    "by_height": "By Height:",
+    "original_size": "Original size:",
+    "new_size": "New size:",
+    "ratio": "Compression ratio:",
+    "hint": "Smart compression preserves image proportions. Choose compression method and click Apply."
+  },
+
+  "crop": {
+    "zoom": "Zoom:",
+    "rotation": "Rotation:",
+    "position_x": "X:",
+    "position_y": "Y:",
+    "aspect_ratio": "Aspect Ratio:",
+    "aspect_free": "Free",
+    "aspect_square": "Square",
+    "aspect_standard": "Standard",
+    "aspect_wide": "Wide",
+    "aspect_portrait": "Portrait",
+    "aspect_stories": "Stories",
+    "lock_aspect": "Lock Aspect Ratio",
+    "preview": "Preview",
+    "apply_crop": "Apply Crop",
+    "hints": "Hints:",
+    "hint_drag": "Click and drag to select crop area",
+    "hint_wheel": "Mouse wheel to zoom (PC)",
+    "hint_shift": "Hold Shift to keep proportions",
+    "hint_double": "Double click/tap to select entire area"
+  },
+
+  "stickers": {
+    "upload": "Upload Your Sticker",
+    "gallery": "Sticker Gallery",
+    "category": "Category:",
+    "search_placeholder": "by name/tag...",
+    "delete_all": "Delete All",
+    "selected_settings": "Selected Sticker Settings",
+    "delete_sticker": "Delete Sticker",
+    "hint": "Click on a sticker on the canvas to select and configure it."
+  },
+
+  "bulk": {
+    "title": "Bulk Settings",
+    "placeholder": "Enter quotes, each on a new line (max 35)",
+    "start": "Start Bulk Generation",
+    "clear_list": "Clear List",
+    "hint": "Use this to generate a series of quotes with the same background, image and author, preserving the chosen style.",
+    "count": "quotes"
+  },
+
+  "multi_export": {
+    "title": "Package Settings",
+    "description": "Create images for all popular social networks with one click. All files will be saved in a ZIP archive.",
+    "select_platforms": "Select platforms:",
+    "adaptation": "Adaptation to sizes:",
+    "mode_cover": "Crop (fill frame)",
+    "mode_contain": "Add margins (show all)",
+    "mode_stretch": "Stretch (distort)",
+    "optimize": "Optimize quality",
+    "add_watermark": "Add watermark",
+    "format": "Format:",
+    "save_selection": "Remember platform selection",
+    "save_hint": "(Your selection will be saved for next visit)",
+    "progress": "Progress:",
+    "status_preparing": "Preparing...",
+    "preview_thumbnails": "Preview (thumbnails):"
+  },
+
+  "platforms": {
+    "instagram_post": "Instagram Post",
+    "instagram_stories": "Instagram Stories",
+    "facebook_post": "Facebook Post",
+    "twitter_post": "Twitter/X Post",
+    "pinterest_pin": "Pinterest Pin",
+    "linkedin_post": "LinkedIn Post",
+    "youtube_thumbnail": "YouTube Thumbnail",
+    "telegram_post": "Telegram Post",
+    "wp_featured": "WP Featured Image"
+  },
+
+  "messages": {
+    "success_downloaded": "Image downloaded!",
+    "success_generated": "Quote generated!",
+    "success_applied": "Applied successfully!",
+    "success_saved": "Saved successfully!",
+    "error_no_quote": "Enter quote text",
+    "error_no_author": "Fill in Author field",
+    "error_no_image": "No background image",
+    "error_select_platform": "Select at least one platform",
+    "error_file_type": "Please select an image",
+    "error_loading": "Loading error",
+    "info_searching": "Searching...",
+    "info_loading_details": "Loading details...",
+    "info_generating": "Generating..."
+  },
+
+  "ai": {
+    "generate": "Generate (AI)",
+    "category_select": "Select category or enter custom prompt",
+    "smart_mode": "Smart Mode",
+    "regenerate": "Regenerate",
+    "use_quote": "Use Quote",
+    "clear": "Clear",
+    "result": "AI Generated Quote:",
+    "advanced": "Advanced Settings",
+    "prompt_placeholder": "Enter your custom prompt..."
+  },
+
+  "pexels": {
+    "title": "Pexels Photo Search",
+    "orientation": "Orientation:",
+    "orientation_any": "Any",
+    "orientation_landscape": "Landscape",
+    "orientation_portrait": "Portrait",
+    "orientation_square": "Square",
+    "results": "Results:",
+    "auto_credit": "Automatically credit photographer (optional but appreciated)"
+  },
+
+  "quick_format": "Quick Format Selection:",
+  "instagram_1_1": "Instagram Post:",
+  "youtube_16_9": "YouTube:",
+  "linkedin_ratio": "LinkedIn:",
+  "custom_size_hint": "Choose Custom Size to create image with unique proportions (from 100×100 to 4000×4000 px)",
+
+  "interactive": {
+    "text_width": "Text Width:",
+    "text_height": "Text Height:",
+    "auto_size": "Auto-size",
+    "manual_mode": "Manual Mode",
+    "fix_layout": "Fix Layout",
+    "layout_fixed": "Layout Fixed",
+    "hint": "Drag text with mouse or finger. Pull green controls (→, ↓, ↘) to resize.",
+    "scroll_lock": "Scroll Lock"
+  },
+
+  "reset_text": "Reset Text",
+  "image_info": "Image Info",
+
+  "footer": {
+    "created_by": "Created by QuotifyMe.com"
+  }
+}
